@@ -1,11 +1,11 @@
 import { apiJSON } from "./api-helper.js";
-import { errorUnsupported, genericError } from "./errors.js";
+import { errorUnsupported, genericError } from "./sub/errors.js";
 
-import bilibili from "../services/bilibili.js";
-import reddit from "../services/reddit.js";
-import twitter from "../services/twitter.js";
-import youtube from "../services/youtube.js";
-import vk from "../services/vk.js";
+import bilibili from "./services/bilibili.js";
+import reddit from "./services/reddit.js";
+import twitter from "./services/twitter.js";
+import youtube from "./services/youtube.js";
+import vk from "./services/vk.js";
 
 export default async function (host, patternMatch, url, ip, lang, format, quality) {
     try {
@@ -53,6 +53,10 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                         lang: lang, quality: quality,
                         format: "mp4"
                     };
+
+                    if (url.match('music.youtube.com')) {
+                        format = "audio"
+                    }
                     
                     switch (format) {
                         case "webm":
@@ -66,10 +70,6 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                             fetchInfo["quality"] = "max";
 
                             break;
-                    }
-
-                    if (url.match('music.youtube.com')) {
-                        fetchInfo["isAudioOnly"] = true;
                     }
 
                     let r = await youtube(fetchInfo);

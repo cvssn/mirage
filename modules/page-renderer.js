@@ -29,7 +29,7 @@ export default function(obj) {
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=${isIOS ? `1` : `5`}">
         <title>${appName}</title>
         <meta property="og:url" content="${process.env.selfURL}">
         <meta property="og:title" content="${appName}">
