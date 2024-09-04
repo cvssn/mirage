@@ -1,0 +1,35 @@
+{
+  "name": "mirage",
+  "version": "2.1.0",
+  "description": "downloader de mídias sociais feito em javascript.",
+  "author": "cavassani",
+  "exports": "./mirage.js",
+  "type": "module",
+  "engines": {
+    "node": ">=14.16"
+  },
+  "scripts": {
+    "start": "node mirage",
+    "setup": "node modules/setup.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvssn/mirage.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cvssn/mirage/issues"
+  },
+  "homepage": "https://github.com/cvssn/mirage#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1",
+    "express-rate-limit": "^6.3.0",
+    "ffmpeg-static": "^5.0.0",
+    "got": "^12.1.0",
+    "node-cache": "^5.1.2",
+    "url-pattern": "^1.0.3",
+    "xml-js": "^1.6.11",
+    "ytdl-core": "^4.11.0"
+  }
+}

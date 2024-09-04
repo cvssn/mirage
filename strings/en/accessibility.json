@@ -1,0 +1,10 @@
+{
+    "about": "about",
+    "settings": "settings",
+    "input": "url input area",
+    "download": "download button",
+    "changelog": "changelog",
+    "close": "close button",
+    "alwaysVisibleButton": "keep the download button always visible",
+    "donate": "support {appName} by donating"
+}
