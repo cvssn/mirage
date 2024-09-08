@@ -1,4 +1,4 @@
-import { services, quality as mq } from "../config.js";
+import { services, quality as mq } from "../../../modules/config.js";
 
 function closest(goal, array) {
     return array.sort().reduce(function(prev, curr) {

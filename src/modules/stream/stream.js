@@ -1,6 +1,6 @@
-import { apiJSON } from "../sub/api-helper.js";
+import { apiJSON } from "../sub/api-helper.js/index.js";
 import { verifyStream } from "./manage.js";
-import { streamAudioOnly, streamDefault, streamLiveRender } from "./types.js";
+import { streamAudioOnly, streamDefault, streamLiveRender } from "../../../modules/stream/types.js";
 
 export default function(res, ip, id, hmac, exp) {
     try {

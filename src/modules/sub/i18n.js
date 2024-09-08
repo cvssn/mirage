@@ -7,7 +7,7 @@ export default function(lang, cat, string, replacement) {
     }
 
     try {
-        let str = loadJson(`./strings/${lang}/${cat}.json`);
+        let str = loadJson(`./src/i18n/${lang}/${cat}.json`);
 
         if (str && str[string]) {
             let s = str[string].replace(/\n/g, '<br/>').replace(/{appName}/g, appName).replace(/{repo}/g, repo)

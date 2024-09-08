@@ -9,8 +9,8 @@
     "node": ">=14.16"
   },
   "scripts": {
-    "start": "node mirage",
-    "setup": "node modules/setup.js"
+    "start": "node src/mirage",
+    "setup": "node src/modules/setup.js"
   },
   "repository": {
     "type": "git",

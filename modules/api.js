@@ -2,10 +2,10 @@ import UrlPattern from "url-pattern";
 
 import { services as patterns } from "./config.js";
 
-import { cleanURL, apiJSON } from "./sub/api-helper.js";
+import { cleanURL, apiJSON } from "../src/modules/sub/api-helper.js/index.js";
 import { errorUnsupported } from "./sub/errors.js";
-import loc from "./sub/loc.js";
-import match from "./match.js";
+import loc from "./sub/i18n.js";
+import match from "../src/modules/match.js/index.js";
 
 export async function getJSON(originalURL, ip, lang, format, quality) {
     try {

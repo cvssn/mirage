@@ -1,0 +1,11 @@
+{
+    "about": "view about",
+    "settings": "open settings",
+    "input": "link input area",
+    "download": "download button",
+    "changelog": "view changelog",
+    "close": "close the popup",
+    "alwaysVisibleButton": "keep the download button always visible",
+    "downloadPopup": "ask what to do with downloads",
+    "donate": "open donation popup"
+}

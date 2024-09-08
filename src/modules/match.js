@@ -1,11 +1,11 @@
 import { apiJSON } from "./api-helper.js";
-import { errorUnsupported, genericError } from "./sub/errors.js";
+import { errorUnsupported, genericError } from "../../modules/sub/errors.js";
 
-import bilibili from "./services/bilibili.js";
-import reddit from "./services/reddit.js";
-import twitter from "./services/twitter.js";
-import youtube from "./services/youtube.js";
-import vk from "./services/vk.js";
+import bilibili from "../../modules/services/bilibili.js";
+import reddit from "../../modules/services/reddit.js";
+import twitter from "../../modules/services/twitter.js";
+import youtube from "../../modules/services/youtube.js";
+import vk from "../../modules/services/vk.js";
 
 export default async function (host, patternMatch, url, ip, lang, format, quality) {
     try {
@@ -47,7 +47,7 @@ export default async function (host, patternMatch, url, ip, lang, format, qualit
                 } else throw Error()
 
             case "youtube":
-                if (patternMatch["id"]) {
+                if (patternMatch["id"] && patternMatch["id"].length >= 11) {
                     let fetchInfo = {
                         id: patternMatch["id"].slice(0, 11),
                         lang: lang, quality: quality,
