@@ -31,27 +31,32 @@ export default function(obj) {
         return `<!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=${isIOS ? `1` : `5`}">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=${isIOS ? `1` : `5`}" />
+
         <title>${appName}</title>
-        <meta property="og:url" content="${process.env.selfURL}">
-        <meta property="og:title" content="${appName}">
-        <meta property="og:description" content="${loc(obj.lang, 'desc', 'embed')}">
-        <meta property="og:image" content="${process.env.selfURL}icons/generic.png">
-        <meta name="title" content="${appName}">
-        <meta name="description" content="${loc(obj.lang, 'desc', 'embed')}">
-        <meta name="theme-color" content="#000000">
-        <meta name="twitter:card" content="summary">
-        <link rel="icon" type="image/x-icon" href="icons/favicon.ico">
-        <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-        <link rel="manifest" href="mirage.webmanifest">
-        <link rel="stylesheet" href="mirage.css">
-        <link rel="stylesheet" href="fonts/notosansmono/notosansmono.css">
+
+        <meta property="og:url" content="${process.env.selfURL}" />
+        <meta property="og:title" content="${appName}" />
+        <meta property="og:description" content="${loc(obj.lang, 'desc', 'embed')}" />
+        <meta property="og:image" content="${process.env.selfURL}icons/generic.png" />
+        <meta name="title" content="${appName}" />
+        <meta name="description" content="${loc(obj.lang, 'desc', 'embed')}" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="twitter:card" content="summary" />
+
+        <link rel="icon" type="image/x-icon" href="icons/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+
+        <link rel="manifest" href="cobalt.webmanifest" />
+        <link rel="stylesheet" href="cobalt.css" />
+        <link rel="stylesheet" href="fonts/notosansmono/notosansmono.css" />
+
         <noscript><div style="margin: 2rem;">${loc(obj.lang, 'desc', 'noScript')}</div></noscript>
     </head>
-    <body id="mirage-body">
+    <body id="cobalt-body">
         <div id="popup-download" class="popup center box" style="visibility: hidden;">
             <div id="popup-header" class="popup-header">
                 <button id="close" class="button mono" onclick="popup('download', 0)" aria-label="${loc(obj.lang, 'accessibility', 'close')}">x</button>
@@ -68,16 +73,15 @@ export default function(obj) {
                 <div id="desc" class="explanation about-padding">${isIOS ? loc(obj.lang, 'desc', 'iosDownload') : loc(obj.lang, 'desc', 'normalDownload')}</div>
             </div>
         </div>
-        <div id="popup-about" class="popup-narrow center box" style="visibility: hidden;">
+        <div id="popup-about" class="popup center box" style="visibility: hidden;">
             <div id="popup-header" class="popup-header">
                 <button id="close" class="button mono" onclick="popup('about', 0)" aria-label="${loc(obj.lang, 'accessibility', 'close')}">x</button>
                 <div id="title" class="popup-title">${loc(obj.lang, 'title', 'about')}</div>
             </div>
             <div id="content" class="popup-content with-footer">
-                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'about')}</div>
-                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'support_1')} ${enabledServices}.</div>
-                ${isIOS ? `<div id="desc" class="popup-subtitle popup-desc"><span class="text-backdrop">${loc(obj.lang, 'desc', 'iosTitle')}</span></div><div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'ios')}</div>`: ``}
-                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}">${loc(obj.lang, 'desc', 'sourcecode')}</a></div>
+                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'aboutSummary')}</div>
+                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'supportedServices')} ${enabledServices}.</div>
+                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}">${loc(obj.lang, 'desc', 'sourceCode')}</a></div>
             </div>
             <div id="popup-footer" class="popup-footer">
                 <a id="popup-bottom" class="popup-footer-content" href="${authorInfo.link}">${loc(obj.lang, 'desc', 'popupBottom')}</a>
@@ -87,21 +91,22 @@ export default function(obj) {
             <div id="popup-header" class="popup-header">
                 <button id="close" class="button mono" onclick="popup('changelog', 0)" aria-label="${loc(obj.lang, 'accessibility', 'close')}">x</button>
                 <div id="title" class="popup-title">${loc(obj.lang, 'title', 'changelog')}</div>
-                <div id="desc" class="popup-subtitle">${loc(obj.lang, 'changelog', 'subtitle')}(${obj.hash})</div>
+                <div id="desc" class="popup-subtitle">${com[0]} (${obj.hash})</div>
             </div>
-            <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'aboutSummary')}</div>
-                <div id="desc" class="popup-desc about-padding">${loc(obj.lang, 'desc', 'supportedServices')} ${enabledServices}.</div>
-                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}/commits">${loc(obj.lang, 'desc', 'sourceCode')}</a></div>
+            <div id="content" class="popup-content">
+                <div id="desc" class="popup-desc about-padding">${com[1]}</div>
+                <div id="desc" class="popup-desc"><a class="text-backdrop" href="${repo}/commits">${loc(obj.lang, 'desc', 'github')}</a></div>
             </div>
         </div>
         <div id="popup-donate" class="popup scrollable center box" style="visibility: hidden;">
             <div id="popup-header" class="popup-header">
                 <button id="close" class="button mono" onclick="popup('donate', 0)" aria-label="${loc(obj.lang, 'accessibility', 'close')}">x</button>
                 <div id="title" class="popup-title">${loc(obj.lang, 'title', 'donate')}</div>
-                <div id="desc" class="popup-subtitle">${com[0]} (${obj.hash})</div>
+                <div id="desc" class="little-subtitle">${loc(obj.lang, 'desc', 'donationsSub')}</div>
             </div>
             <div id="content" class="popup-content">
-                <div id="desc" class="popup-desc about-padding">${com[1]}</div>
+                ${donate}
+                <div id="desc" class="explanation about-padding">${loc(obj.lang, 'desc', 'donations')}</div>
                 <div id="desc" class="popup-desc"><a class="text-backdrop" href="${authorInfo.contact}">${loc(obj.lang, 'desc', 'donateDm')}</a></div>
             </div>
         </div>
@@ -118,9 +123,9 @@ export default function(obj) {
                         <div id="theme-switcher" class="switch-container">
                             <div class="subtitle">${loc(obj.lang, 'settings', 'theme')}</div>
                             <div class="switches">
-                                <div id="themeAuto" class="switch full" onclick="changeSwitcher('theme', 'auto', 1)">${loc(obj.lang, 'settings', 'theme-auto')}</div>
-                                <div id="themeDark" class="switch" onclick="changeSwitcher('theme', 'dark', 1)">${loc(obj.lang, 'settings', 'theme-dark')}</div>
-                                <div id="themeLight" class="switch full" onclick="changeSwitcher('theme', 'light', 1)">${loc(obj.lang, 'settings', 'theme-light')}</div>
+                                <div id="theme-auto" class="switch full" onclick="changeSwitcher('theme', 'auto', 1)">${loc(obj.lang, 'settings', 'themeAuto')}</div>
+                                <div id="theme-dark" class="switch" onclick="changeSwitcher('theme', 'dark', 1)">${loc(obj.lang, 'settings', 'themeDark')}</div>
+                                <div id="theme-light" class="switch full" onclick="changeSwitcher('theme', 'light', 1)">${loc(obj.lang, 'settings', 'themeLight')}</div>
                             </div>
                         </div>
                         <div class="subtitle">${loc(obj.lang, 'settings', 'misc')}</div>
@@ -158,7 +163,7 @@ export default function(obj) {
                             <div class="switches">
                                 <div id="youtubeFormat-mp4" class="switch full" onclick="changeSwitcher('youtubeFormat', 'mp4', 1)">mp4</div>
                                 <div id="youtubeFormat-webm" class="switch" onclick="changeSwitcher('youtubeFormat', 'webm', 1)">webm</div>
-                                <div id="youtubeFormat-audio" class="switch full" onclick="changeSwitcher('youtubeFormat', 'audio', 1)">apenas áudio</div>
+                                <div id="youtubeFormat-audio" class="switch full" onclick="changeSwitcher('youtubeFormat', 'audio', 1)">audio only</div>
                             </div>
                             <div class="explanation">${loc(obj.lang, 'settings', 'formatInfo')}</div>
                         </div>
@@ -176,7 +181,7 @@ export default function(obj) {
             </div>
         </div>
         <div id="popup-backdrop" style="visibility: hidden;"></div>
-        <div id="mirage-main-box" class="center box" style="visibility: hidden;">
+        <div id="cobalt-main-box" class="center box" style="visibility: hidden;">
             <div id="logo-area">${appName}</div>
             <div id="download-area" class="mobile-center">
                 <input id="url-input-area" class="mono" type="text" autocorrect="off" maxlength="110" autocapitalize="off" placeholder="${loc(obj.lang, 'desc', 'input')}" aria-label="${loc(obj.lang, 'accessibility', 'input')}" oninput="button()">
@@ -193,7 +198,7 @@ export default function(obj) {
         </footer>
     </body>
     <script type="text/javascript">const loc = {noInternet:"${loc(obj.lang, 'apiError', 'noInternet')}"}</script>
-    <script type="text/javascript" src="mirage.js"></script>
+    <script type="text/javascript" src="cobalt.js"></script>
 </html>`;
     } catch (err) {
         return `${loc('en', 'apiError', 'fatal', obj.hash)}`;
