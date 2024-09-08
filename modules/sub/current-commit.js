@@ -5,5 +5,9 @@ export function shortCommit() {
 }
 
 export function getCommitInfo() {
-    return execSync(`git show -s --format='%s;;;%B'`).toString().trim().slice(1,-1).replace(/[\r\n]/gm, '\n').split(';;;')
+    let d = execSync(`git show -s --format='%s;;;%B'`).toString().trim().slice(1,-1).replace(/[\r\n]/gm, '\n').split(';;;')
+    
+    d[1] = d[1].replace(d[0], '').trim().toString().replace(/[\r\n]/gm, '<br>')
+    
+    return d
 }
