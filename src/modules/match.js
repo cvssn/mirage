@@ -1,4 +1,4 @@
-import { apiJSON } from "./api-helper.js";
+import { apiJSON } from "./sub/utils.js";
 import { errorUnsupported, genericError } from "../../modules/sub/errors.js";
 
 import bilibili from "../../modules/services/bilibili.js";

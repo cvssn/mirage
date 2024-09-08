@@ -2,10 +2,10 @@ import UrlPattern from "url-pattern";
 
 import { services as patterns } from "./config.js";
 
-import { cleanURL, apiJSON } from "../src/modules/sub/utils.js/index.js";
+import { cleanURL, apiJSON } from "./sub/utils.js";
 import { errorUnsupported } from "./sub/errors.js";
 import loc from "./sub/i18n.js";
-import match from "../src/modules/match.js/index.js";
+import match from "./match.js";
 
 export async function getJSON(originalURL, ip, lang, format, quality) {
     try {
@@ -18,7 +18,6 @@ export async function getJSON(originalURL, ip, lang, format, quality) {
 
             if (host == "youtu") {
                 host = "youtube";
-
                 url = `https://youtube.com/watch?v=${url.replace("youtu.be/", "").replace("https://", "")}`;
             }
 
