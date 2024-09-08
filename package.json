@@ -1,6 +1,6 @@
 {
   "name": "mirage",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "downloader de mídias sociais feito em javascript.",
   "author": "cavassani",
   "exports": "./mirage.js",

@@ -6,5 +6,5 @@
     "changelog": "changelog",
     "close": "close button",
     "alwaysVisibleButton": "keep the download button always visible",
-    "donate": "support {appName} by donating"
+    "donate": "support development of {appName} by donating"
 }

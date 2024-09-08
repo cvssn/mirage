@@ -23,12 +23,10 @@ a aplicação não remuxa nenhum vídeo, então os vídeos que você obtém têm
     - [ ] classificar o conteúdo dos arquivos .json
     - [ ] renomear cada chave de entrada para ficar menos vinculada a um serviço específico (entradas como youtubebroke são horríveis, sinto muito)
 - [ ] adição do suporte para mais idiomas quando a limpeza da localização for concluída
-- [ ] css limpo
 - [ ] utilização do esmbuild para reduzir css e js de frontend
 - [ ] tornar os botões de troca nas configurações selecionáveis ​​com o teclado
 - [ ] fazer algo sobre o changelog porque o jeito que está agora não é muito bom
 - [ ] refazer o módulo de renderização de página para ser mais versátil
-- [ ] limpeza do código para ser mais consistente entre os módulos
 - [ ] correspondência pode ser refeita
 - [ ] suporte para o facebook e instagram
 - [ ] suporte para o tiktok (?)
@@ -46,6 +44,7 @@ o cronograma de atualização depende da minha motivação. não espere nenhuma 
 ### módulos npm
 
 - express
+- cors
 - got
 - url-pattern
 - xml-js
@@ -59,7 +58,7 @@ configure as instalações do script e de todas as dependências **npm** necess�
 
 1. clone o repositório: `git clone https://github.com/cvssn/mirage`
 2. rode o script de configuração e siga as instruções: `npm run setup`
-3. rode o mirage por meio do `npm start` ou `node mirage`
+3. rode o mirage por meio do `npm start`
 4. feito
 
 ## licença

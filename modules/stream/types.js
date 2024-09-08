@@ -1,7 +1,7 @@
 import { spawn } from "child_process";
 import ffmpeg from "ffmpeg-static";
 import got from "got";
-import { genericUserAgent } from "../config.js";
+import { ffmpegArgs, genericUserAgent } from "../config.js";
 import { msToTime } from "../sub/api-helper.js";
 import { internalError } from "../sub/errors.js";
 import loc from "../sub/loc.js";
@@ -19,14 +19,10 @@ export async function streamDefault(streamInfo, res) {
         });
 
         stream.pipe(res).on('error', (err) => {
-            internalError(res);
-
             throw Error("erro no canal de fluxo de arquivo.");
         });
 
         stream.on('error', (err) => {
-            internalError(res);
-
             throw Error("erro de fluxo de arquivo.")
         });
     } catch (e) {
@@ -51,22 +47,11 @@ export async function streamLiveRender(streamInfo, res) {
                 '-i', 'pipe:3',
                 '-i', 'pipe:4',
                 '-map', '0:v',
-                '-map', '1:a',
-                '-c:v', 'copy',
-                '-c:a', 'copy',
+                '-map', '1:a'
             ];
 
-            if (format == 'mp4') {
-                args.push('-movflags', 'frag_keyframe+empty_moov');
-
-                if (streamInfo.service == "youtube") {
-                    args.push('-t', msToTime(streamInfo.time));
-                }
-            } else if (format == 'webm') {
-                args.push('-t', msToTime(streamInfo.time));
-            }
-
-            args.push('-f', format, 'pipe:5');
+            args = args.concat(ffmpegArgs[format])
+            args.push('-t', msToTime(streamInfo.time), '-f', format, 'pipe:5');
 
             const ffmpegProcess = spawn(ffmpeg, args, {
                 windowsHide: true,
@@ -79,20 +64,14 @@ export async function streamLiveRender(streamInfo, res) {
 
             ffmpegProcess.on('error', (err) => {
                 ffmpegProcess.kill();
-
-                internalError(res);
             });
 
             audio.on('error', (err) => {
                 ffmpegProcess.kill();
-
-                internalError(res);
             });
 
             video.on('error', (err) => {
                 ffmpegProcess.kill();
-
-                internalError(res);
             });
 
             res.setHeader('Content-Disposition', `attachment; filename="${streamInfo.filename}"`);
@@ -101,14 +80,10 @@ export async function streamLiveRender(streamInfo, res) {
 
             video.pipe(ffmpegProcess.stdio[3]).on('error', (err) => {
                 ffmpegProcess.kill();
-
-                internalError(res);
             });
 
             audio.pipe(ffmpegProcess.stdio[4]).on('error', (err) => {
                 ffmpegProcess.kill();
-
-                internalError(res);
             });
         } else {
             res.status(400).json({ status: "error", text: loc('en', 'apiError', 'corruptedVideo') });
@@ -146,14 +121,10 @@ export async function streamAudioOnly(streamInfo, res) {
 
         ffmpegProcess.on('error', (err) => {
             ffmpegProcess.kill();
-
-            internalError(res);
         });
 
         audio.on('error', (err) => {
             ffmpegProcess.kill();
-
-            internalError(res);
         });
 
         res.setHeader('Content-Disposition', `attachment; filename="${streamInfo.filename}"`);
@@ -162,8 +133,6 @@ export async function streamAudioOnly(streamInfo, res) {
         
         audio.pipe(ffmpegProcess.stdio[3]).on('error', (err) => {
             ffmpegProcess.kill();
-
-            internalError(res);
         });
     } catch (e) {
         internalError(res);
